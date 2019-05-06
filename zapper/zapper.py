@@ -3,6 +3,7 @@
 from helpers import report_to_cli, check_args
 from scanner import scanner
 from context import context
+from report import report
 from api import zap_api
 import configparser
 import argparse

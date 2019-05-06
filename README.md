@@ -32,3 +32,7 @@ git clone https://github.com/alfuananzo/zapper.git
 cd zapper
 pip3 install -r requirements.txt
 ```
+
+## Configuration
+
+The makefile installs the configuration of zapper in `/etc/zapper/zapper.conf`. 

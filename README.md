@@ -21,7 +21,6 @@ make
 make install
 ```
 
-You can than call zapper using `zapper`
 
 ### Contribute
 
@@ -35,4 +34,12 @@ pip3 install -r requirements.txt
 
 ## Configuration
 
-The makefile installs the configuration of zapper in `/etc/zapper/zapper.conf`. 
+The makefile installs the configuration of zapper in `/etc/zapper/zapper.conf`.
+
+## usage
+
+Starting off a basic scan can be done by invoking Zapper using
+
+```sh
+$ zapper --target http://google.com
+```

@@ -3,8 +3,8 @@ from datetime import datetime
 def report_to_cli(msg):
     print("[%s] %s" % (datetime.now().strftime("%H:%M:%S"), msg))
 
-def store(self, data, filename, mode='w'):
-    f = open('%s%s' % (args.out_dir, filename), mode)
+def store(data, filename, mode='w'):
+    f = open('%s%s' % ('', filename), mode)
     f.write(data)
     f.close()
 

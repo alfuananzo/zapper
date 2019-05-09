@@ -1,6 +1,6 @@
 import requests, errno, json
 
-class zap_api:
+class api:
     def __init__(self, url, api_key=None):
         self.zap_url = url
         self.s = requests.Session()

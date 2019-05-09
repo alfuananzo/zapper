@@ -18,13 +18,14 @@ init:
 	pip3 install virtualenv
 
 install:
-	cp -r ./ /opt/zapper
-	cd /opt/zapper/ && virtualenv env && source env/bin/activate && pip3 install -r requirements.txt && chmod +x /opt/zapper/zapper/zapper.py
+	# Installation
+	mkdir -p /opt/zapper/
+	cp -r ./zapper /opt/zapper/zapper && cp ./zapper.py /opt/zapper/ && cp ./Requirements.txt /opt/zapper/
+	cd /opt/zapper/ && virtualenv env && source env/bin/activate && pip3 install -r requirements.txt && chmod +x /opt/zapper/zapper.py
 	chmod -R 755 /opt/zapper
 	mkdir -p /etc/zapper/
 	cp ./zap.config /etc/zapper/zapper.config
 	chmod -R 755 /etc/zapper
-	ln -sf /opt/zapper/zapper/zapper.py $(link_loc)/zapper
-
+	ln -sf /opt/zapper/zapper.py $(link_loc)/zapper
 
 .PHONY: init install

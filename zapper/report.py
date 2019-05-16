@@ -140,16 +140,6 @@ class report:
             <tr bgcolor='#e8e8e8'><td width='20%%'>CWE Id</td><td width='80%%'>525</td></tr>
         </table>""" % (alert['risk'], alert['risk'], alert['risk'], alert['confidence'].replace('\n', '<br>'), alert['name'], alert['description'].replace('\n', '<br>'), alert['url'].replace('\n', '<br>'), alert['method'].replace('\n', '<br>'), alert['param'].replace('\n', '<br>'), alert['solution'].replace('\n', '<br>'), alert['reference'].replace('\n', '<br>')), 'report.html', 'a')
 
-    # def report_urls(self):
-    #     self.report("The following URLs were found for target %s:" % self.target)
-    #
-    #     urls = []
-    #     for target_site in self.get_target_sites(self.target):
-    #         urls += self.call('POST', 'JSON/core/view/urls',  {'zapapiformat': 'JSON', 'formMethod': 'POST', 'baseurl': target_site}).json()['urls']
-    #
-    #     for url in urls:
-    #         print(" -", url)
-    #
     def target_sites(self, target):
         target_host = urlparse(target).netloc
         sites = self.api.call('POST', 'JSON/core/view/sites', {'zapapiformat': 'JSON', 'formMethod': 'POST'}).json()['sites']

@@ -4,9 +4,7 @@ class api:
     def __init__(self, url, api_key=None):
         self.zap_url = url
         self.s = requests.Session()
-        if 'localhost' in self.zap_url or '127.0.0.1' in self.zap_url:
-            self.s.trust_env = False
-
+        
         # Test connection
         self.call('GET', '/')
 

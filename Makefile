@@ -21,7 +21,7 @@ install:
 	# Installation
 	mkdir -p /opt/zapper/
 	cp -r ./zapper /opt/zapper/zapper && cp ./zapper.py /opt/zapper/ && cp ./Requirements.txt /opt/zapper/
-	cd /opt/zapper/ && virtualenv env && source env/bin/activate && pip3 install -r requirements.txt && chmod +x /opt/zapper/zapper.py
+	cd /opt/zapper/ && virtualenv env && source env/bin/activate && pip3 install -r Requirements.txt && chmod +x /opt/zapper/zapper.py
 	chmod -R 755 /opt/zapper
 	mkdir -p /etc/zapper/
 	cp ./zap.config /etc/zapper/zapper.config

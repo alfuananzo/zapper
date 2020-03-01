@@ -29,7 +29,7 @@ Download the source code using
 ```sh
 git clone https://github.com/alfuananzo/zapper.git
 cd zapper
-pip3 install -r requirements.txt
+pip3 install -r Requirements.txt
 ```
 
 ## Configuration

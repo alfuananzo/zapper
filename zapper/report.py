@@ -143,6 +143,4 @@ class report:
     def target_sites(self, target):
         target_host = urlparse(target).netloc
         sites = self.api.call('POST', 'JSON/core/view/sites', {'zapapiformat': 'JSON', 'formMethod': 'POST'}).json()['sites']
-        for site in sites:
-            print(site[-len(target_host)+1:-1])
         return [site for site in sites if urlparse(site).netloc == target_host]

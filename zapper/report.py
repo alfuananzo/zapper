@@ -10,6 +10,7 @@ class report:
 
         alerts = []
         for target_site in self.target_sites(target):
+            target_site = "%s://%s" % (urlparse(target_site).scheme, urlparse(target_site).netloc)
             alerts += self.api.call('POST', 'JSON/core/view/alerts',  {'zapapiformat': 'JSON', 'formMethod': 'POST', 'baseurl': target_site}).json()['alerts']
 
         alert_dict = {'High': [], 'Medium': [], 'Low': [], 'Informational': []}

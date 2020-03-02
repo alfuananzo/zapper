@@ -51,7 +51,7 @@ def init():
     zapper_scanner = scanner(zapper_api)
     zapper_report = report(zapper_api)
 
-    report_to_cli("Starting zap scan using ZAP host %s" % zap_url)
+    report_to_cli("Starting Zapper using ZAP host %s" % zap_url)
 
     target_host = urlparse(args.target).netloc
     target_sub_dir = urlparse(args.target).path

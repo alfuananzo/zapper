@@ -55,5 +55,5 @@ class context:
         return self.context_id
 
     def store(self):
-        self.api.report('Storing context %s' % self.context)
-        report_to_cli('POST', 'JSON/context/action/exportContext', {'zapapiformat': 'JSON', 'formMethod': 'POST', 'contextName': self.context, 'contextFile': '%s.context' % self.context})
+        report_to_cli('Storing context %s' % self.context)
+        self.api.call('POST', 'JSON/context/action/exportContext', {'zapapiformat': 'JSON', 'formMethod': 'POST', 'contextName': self.context, 'contextFile': '%s.context' % self.context})

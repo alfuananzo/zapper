@@ -4,6 +4,7 @@ from zapper.scanner import scanner
 from zapper.context import context
 from zapper.report import report
 
+from os import path
 import configparser
 import argparse
 from urllib.parse import urlparse
@@ -35,10 +36,12 @@ def init():
         if getattr(args, arg) is None and  arg not in optional_args:
             setattr(args, arg, config['zap'][arg])
 
-    if not args.scope:
+    if not args.scope and path.exists(args.config):
         args.scope = [ urlparse(args.target).netloc ] if not config['zap']['scope'] else set([urlparse(args.target).netloc] + [ x.strip().lower() for x in config['zap']['scope'].split(',') ])
+    elif not args.scope:
+        args.scope = [ urlparse(args.target).netloc ]
     else:
-        args.scope = set([urlparse(args.target).netloc] + [x.lower() for x in args.target ])
+        args.scope = set([urlparse(args.target).netloc] + [x.lower() for x in args.scope ])
 
     if not check_args(parser, args, 'host', 'port', 'proto', 'target'):
         exit(1)

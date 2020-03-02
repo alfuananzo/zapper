@@ -4,8 +4,6 @@ class api:
     def __init__(self, url, api_key=None):
         self.zap_url = url
         self.s = requests.Session()
-        if self.zap_url == "http://docker.devsecops.business:9020":
-            self.s.headers.update({'Host': 'localhost:8080'})
         # Test connection
         self.call('GET', '/')
 

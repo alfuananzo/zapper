@@ -12,7 +12,7 @@ class report:
         for target_site in self.target_sites(target):
             alerts += self.api.call('POST', 'JSON/core/view/alerts',  {'zapapiformat': 'JSON', 'formMethod': 'POST', 'baseurl': target_site}).json()['alerts']
 
-        alert_dict = {'High': [], 'Medium': [], 'Low': [], 'Info': []}
+        alert_dict = {'High': [], 'Medium': [], 'Low': [], 'Informational': []}
         for alert in alerts:
             print(" -", "%s (CONFIDENCE: %s) - %s)" % (alert['risk'], alert['confidence'], alert['alert']))
             alert_dict[alert['risk']].append(alert)
@@ -33,9 +33,9 @@ class report:
         for alert in alert_dict['Low']:
             self.build_html_alert(alert)
 
-        if len(alert_dict['Info']) > 0:
+        if len(alert_dict['Informational']) > 0:
             store('     <h3 id="info"> Informational findings </h3>', 'report.html', 'a')
-        for alert in alert_dict['Info']:
+        for alert in alert_dict['Informational']:
             self.build_html_alert(alert)
         self.build_html_footer()
 
@@ -118,7 +118,7 @@ class report:
             <tr bgcolor='#e8e8e8'><td><a href='#low'>low</a></td><td align='center'>%i</td></tr>
             <tr bgcolor='#e8e8e8'><td><a href='#info'>info</a></td><td align='center'>%i</td></tr>
         </table>
-        <h2> Alert details </h2>""" % (target, len(alert_dict['High']), len(alert_dict['Medium']), len(alert_dict['Low']), len(alert_dict['Info'])), 'report.html')
+        <h2> Alert details </h2>""" % (target, len(alert_dict['High']), len(alert_dict['Medium']), len(alert_dict['Low']), len(alert_dict['Informational'])), 'report.html')
 
     def build_html_footer(self):
         store("""
@@ -143,4 +143,6 @@ class report:
     def target_sites(self, target):
         target_host = urlparse(target).netloc
         sites = self.api.call('POST', 'JSON/core/view/sites', {'zapapiformat': 'JSON', 'formMethod': 'POST'}).json()['sites']
-        return [site for site in sites if site[-len(target_host):] == target_host]
+        for site in sites:
+            print(site[-len(target_host)+1:-1])
+        return [site for site in sites if urlparse(site).netloc == target_host]
